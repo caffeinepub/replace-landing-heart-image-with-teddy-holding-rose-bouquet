@@ -1,0 +1,17 @@
+{
+  "backend/main.mo": "Empty Motoko actor with no methods.",
+  "feature_evidence.json": "Feature evidence report detailing a text update requirement for a specific paragraph in frontend/src/App.tsx.",
+  "frontend-file-summaries.txt": "Text file containing prewritten summaries for several frontend components and config files.",
+  "frontend/index.css": "Tailwind base setup defining OKLCH color variables and themes for light and dark modes.",
+  "frontend/index.html": "Basic HTML entry point mounting the React app and loading main.tsx.",
+  "frontend/src/App.tsx": "Main React component handling question, accepted, and declined states with heart animations and evasive 'No' button behavior.",
+  "frontend/src/components/CelebrationHearts.tsx": "Component that continuously generates floating heart animations across the screen.",
+  "frontend/src/components/HeartBurst.tsx": "Component rendering a radial burst of animated hearts at a given coordinate.",
+  "frontend/src/components/ValentineLayout.tsx": "Layout wrapper providing a styled centered card container for the app content.",
+  "frontend/src/hooks/useActor.ts": "Hook that creates and manages a backend actor using Internet Identity and react-query.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Context and hooks for managing Internet Identity authentication and state in React.",
+  "frontend/src/index.css": "Tailwind styles plus custom animations and color variables for the Valentine's-themed UI.",
+  "frontend/src/main.tsx": "React entry point initializing query client and identity provider before rendering App.",
+  "frontend/tailwind.config.js": "Tailwind configuration defining themes, extended colors, fonts, animations, and plugins for typography, container queries, and animations.",
+  "project_state.json": "Project metadata describing an ICP full‑stack starter app with Motoko backend, React/Tailwind frontend, and a set of defined interactive and UI features."
+}

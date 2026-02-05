@@ -1,0 +1,184 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 46,
+  "summary": "ICP (Internet Computer) full-stack starter app with Motoko backend and React + Vite + Tailwind + shadcn/ui frontend, featuring a Valentine-themed interactive landing experience with cute heart animations and playful \"Yes/No\" interaction constraints.",
+  "existing_features": [
+    {
+      "id": "IF-1",
+      "title": "Motoko backend canister scaffold",
+      "synonyms": [
+        "backend canister",
+        "Motoko service"
+      ],
+      "description": "Backend canister implemented in Motoko (main.mo) with generated candid/TS bindings for frontend integration.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-2",
+      "title": "React + Vite + Tailwind frontend scaffold",
+      "synonyms": [
+        "frontend app",
+        "Vite React"
+      ],
+      "description": "Frontend application scaffolded with Vite/React, Tailwind CSS, and project configuration (tsconfig, vite config, tailwind config, index.html/css).",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-3",
+      "title": "shadcn/ui component library integrated",
+      "synonyms": [
+        "UI components",
+        "shadcn"
+      ],
+      "description": "shadcn/ui component set added to the frontend (accordion, dialog, form controls, navigation, etc.) with supporting utilities and configuration.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-4",
+      "title": "Internet Identity authentication hooks",
+      "synonyms": [
+        "II auth",
+        "Internet Identity"
+      ],
+      "description": "Client-side hooks and wiring for Internet Identity authentication and actor creation (useInternetIdentity, useActor) with lint safeguards for provider configuration.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-5",
+      "title": "Valentine-themed UI layout and celebration effects",
+      "synonyms": [
+        "Valentine layout",
+        "celebration hearts"
+      ],
+      "description": "ValentineLayout and CelebrationHearts components plus generated themed image assets (heart illustration and pattern background) used by the UI.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-6",
+      "title": "Build/deploy template for ICP project",
+      "synonyms": [
+        "build template",
+        "deployment scaffold"
+      ],
+      "description": "Build template assets and scripts (Dockerfile, deploy.sh, icp.yaml, canister.yaml, workspace configs) for reproducible build and deployment.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-7",
+      "title": "Local storage utility client",
+      "synonyms": [
+        "StorageClient"
+      ],
+      "description": "Frontend storage utility (StorageClient) for persisting client-side state/settings.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-8",
+      "title": "Playful “Yes/No” interaction with evasive “No” button",
+      "synonyms": [
+        "No button dodge",
+        "unclickable No interaction"
+      ],
+      "description": "Valentine landing interaction where selecting “No” is prevented via a playful cursor-evading/dodging behavior (rather than disabling the button), while “Yes” remains clickable and triggers celebratory effects.",
+      "reqIds": [
+        "AR-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "IF-9",
+      "title": "Customized landing question text",
+      "synonyms": [
+        "landing prompt text",
+        "Valentine question copy update"
+      ],
+      "description": "Landing page question text updated to: \"Yash will you be my valentine?\".",
+      "reqIds": [
+        "AR-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "IF-10",
+      "title": "Post-Yes reveal sequence with inline videos",
+      "synonyms": [
+        "post-Yes videos",
+        "Yes click reveal"
+      ],
+      "description": "After clicking “Yes”, the UI reveals and auto-plays two inline user-provided videos as part of the post-Yes sequence.",
+      "reqIds": [
+        "AR-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "IF-11",
+      "title": "Teddy-with-rose-bouquet static asset added",
+      "synonyms": [
+        "teddy image asset",
+        "rose bouquet teddy"
+      ],
+      "description": "Added a teddy-with-rose-bouquet JPEG asset to the frontend public assets for optional use in the landing page UI.",
+      "reqIds": [
+        "AR-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-paragraph-text-shown-directly-below-the-landing-page-question-yash-will-you-be-my-valentine-to-exactly-the-following-single-message-i-ve-been-thinking-about-this-for-a-while-and-i-can-t-imagine-celebrating-valentine-s-with-anyone-else-but-you-i-was-waiting-for-you-to-ask-me-the-question-but-it-s-okay-maybe-next-time-dheere-dheere-sikha-dungi-sab-this-is-my-first-valentine-s-toh-mai-bahut-excited-hu-you-better-not-spoil-it-varna-bahut-maarungi-baaki-anyways-i-love-you-and-you-know-it-apply-this-change-only-to-the-selected-paragraph-element-at-xpath-html-1-body-1-div-1-div-1-div-1-div-1-div-2-div-2-p-1-currently-rendered-by-the-p-under-the-question-in-frontend-src-app-tsx",
+      "title": "Update the paragraph text shown directly below the landing-page question (“Yash will you be my valentine?”) to exactly the following single message: \"I've been thinking about this for a while and I can't imagine celebrating Valentine's with anyone else but you. I was waiting for you to ask me the question but it's okay maybe next time. Dheere dheere sikha dungi sab. This is my first Valentine's toh mai bahut excited hu. You better not spoil it, varna bahut maarungi. Baaki anyways I love you and you know it❤️\". Apply this change only to the selected paragraph element at XPath /html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/p[1] (currently rendered by the <p> under the question in frontend/src/App.tsx).",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-3",
+      "summary": "Replace/update the text shown below the landing page question prompt (user requested: \"replace the text below the questio\").",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "architectural_notes": [
+    "Frontend uses React + Vite + Tailwind + shadcn/ui for UI composition and styling.",
+    "Authentication is handled via Internet Identity on the client, with an actor hook to call the Motoko backend canister.",
+    "Candid/TypeScript declaration files are generated for backend canister integration.",
+    "Repository includes an ICP-oriented build/deploy template (Docker, deploy script, canister yamls, workspace configs).",
+    "Interaction design decision: the “No” button should playfully dodge the cursor (not be disabled).",
+    "Animation design decision: include both continuous floating hearts in the background and a burst effect when clicking “Yes.”",
+    "Post-Yes reveal sequence should display two user-provided videos inline on the page and auto-play immediately after the “Yes” click (sources: two Gmail attachment URLs provided by user).",
+    "User provided a teddy-with-rose-bouquet image asset as a base64-encoded JPEG data URI to use in the landing page UI (for AR-2).",
+    "Teddy-with-rose-bouquet image asset is stored at frontend/public/assets/teddy-with-rose-bouquet.jpg (available for UI use).",
+    "Revert applied: teddy bear element is not rendered in the landing page UI; only the asset remains available."
+  ],
+  "known_issues": [
+    "Provided video sources are Gmail attachment URLs, which may require authentication and may not be directly embeddable/streamable by the public frontend."
+  ],
+  "isFixRequest": false,
+  "generatedImages": [
+    {
+      "filename": "frontend/public/assets/generated/valentine-heart-illustration.dim_512x512.png",
+      "description": "Generated Valentine heart illustration asset for UI.",
+      "targetWidth": 512,
+      "targetHeight": 512
+    },
+    {
+      "filename": "frontend/public/assets/generated/valentine-pattern-bg.dim_2048x2048.png",
+      "description": "Generated Valentine pattern background asset for UI.",
+      "targetWidth": 2048,
+      "targetHeight": 2048
+    }
+  ],
+  "projectName": "Update the paragraph text below the landing question",
+  "clarification_mode": "thinking",
+  "clarification_rounds": 0
+}

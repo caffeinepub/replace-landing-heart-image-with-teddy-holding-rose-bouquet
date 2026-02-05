@@ -1,2 +1,3 @@
-# replace-landing-heart-image-with-teddy-holding-rose-bouquet
-Exported from Caffeine project: Update the paragraph text below the landing question
+## 
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

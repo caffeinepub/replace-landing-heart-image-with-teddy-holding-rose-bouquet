@@ -1,0 +1,37 @@
+{
+  "kind": "build_request",
+  "title": "Update the paragraph text below the landing question",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Update the paragraph text shown directly below the landing-page question (“Yash will you be my valentine?”) to exactly the following single message: \"I've been thinking about this for a while and I can't imagine celebrating Valentine's with anyone else but you. I was waiting for you to ask me the question but it's okay maybe next time. Dheere dheere sikha dungi sab. This is my first Valentine's toh mai bahut excited hu. You better not spoil it, varna bahut maarungi. Baaki anyways I love you and you know it❤️\". Apply this change only to the selected paragraph element at XPath /html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/p[1] (currently rendered by the <p> under the question in frontend/src/App.tsx).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-14"
+        ],
+        "quotes": [
+          "Replace the text below the question with: \"I've been thinking about this for a while and I can't imagine celebrating Valentine's with anyone else but you. I was waiting for you to ask me the question but it's okay maybe next time. Dheere dheere sikha dungi sab. This is my first Valentine's toh mai bahut excited hu. You better not spoil it, varna bahut maarungi. Baaki anyways I love you and you know it❤️\""
+        ]
+      },
+      "acceptanceCriteria": [
+        "On the initial “question” view, the paragraph immediately below the main question displays the new provided message exactly (including punctuation and the ❤️ character).",
+        "No other text (question headline, button labels, accepted/declined screens, footer) is changed.",
+        "No images are changed (the selected img element remains unchanged)."
+      ]
+    }
+  ],
+  "constraints": [
+    "Apply changes only to the selected paragraph element (XPath /html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/p[1]); do not modify the selected image element(s).",
+    "Do not modify any files under frontend/src/components/ui or other immutablePaths listed in SYSTEM_CONTEXT."
+  ],
+  "nonGoals": [
+    "Replacing or editing any images on the page.",
+    "Changing the main question text, button behavior, or the accepted/declined screens."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

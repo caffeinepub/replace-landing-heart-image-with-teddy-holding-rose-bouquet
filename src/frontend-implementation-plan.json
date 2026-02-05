@@ -1,0 +1,23 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Update landing-page paragraph text under the main question",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Replace the paragraph text directly below “Yash will you be my valentine?” with the provided exact message, without changing any other UI text or images.",
+      "acceptanceCriteria": [
+        "On the initial “question” view, the paragraph immediately below the main question displays the new provided message exactly (including punctuation and the ❤️ character).",
+        "No other text (question headline, button labels, accepted/declined screens, footer) is changed.",
+        "No images are changed (the selected img element remains unchanged)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Update only the existing <p> element directly under the landing-page question (the paragraph in the question view) so its text content exactly matches: \"I've been thinking about this for a while and I can't imagine celebrating Valentine's with anyone else but you. I was waiting for you to ask me the question but it's okay maybe next time. Dheere dheere sikha dungi sab. This is my first Valentine's toh mai bahut excited hu. You better not spoil it, varna bahut maarungi. Baaki anyways I love you and you know it❤️\". Do not change any other strings or the image reference."
+        }
+      ]
+    }
+  ]
+}
