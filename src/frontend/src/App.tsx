@@ -219,11 +219,11 @@ function App() {
                             }}
                         >
                             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                                {/* Yes button - stays in normal flow */}
+                                {/* Yes button - stays in normal flow, no transform animations */}
                                 <button
                                     ref={yesButtonRef}
                                     onClick={handleYes}
-                                    className="group relative px-12 py-5 text-xl font-semibold text-primary-foreground bg-primary rounded-full shadow-romantic hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 min-w-[200px] z-20"
+                                    className="group relative px-12 py-5 text-xl font-semibold text-primary-foreground bg-primary rounded-full shadow-romantic hover:shadow-xl transition-shadow duration-300 min-w-[200px] z-20"
                                 >
                                     <span className="flex items-center justify-center gap-2">
                                         <Heart className="w-6 h-6 fill-current" />
@@ -234,7 +234,7 @@ function App() {
                                     ))}
                                 </button>
                                 
-                                {/* No button - becomes absolute when evasive */}
+                                {/* No button - placeholder stays in flow when evasive, absolute button rendered separately */}
                                 {!isNoButtonEvasive ? (
                                     <button
                                         ref={noButtonRef}
@@ -245,18 +245,28 @@ function App() {
                                         Nahi yaar
                                     </button>
                                 ) : (
-                                    <button
-                                        ref={noButtonRef}
-                                        onTouchStart={handleNoTouch}
-                                        className="absolute px-12 py-5 text-xl font-semibold text-muted-foreground bg-secondary rounded-full min-w-[200px] z-30 evasive-button"
-                                        style={{
-                                            transform: `translate(${noButtonPosition.x}px, ${noButtonPosition.y}px)`,
-                                            left: '0',
-                                            top: '0',
-                                        }}
-                                    >
-                                        Nahi yaar
-                                    </button>
+                                    <>
+                                        {/* Invisible placeholder to preserve layout space */}
+                                        <button
+                                            className="px-12 py-5 text-xl font-semibold min-w-[200px] invisible pointer-events-none"
+                                            aria-hidden="true"
+                                        >
+                                            Nahi yaar
+                                        </button>
+                                        {/* Actual evasive button positioned absolutely */}
+                                        <button
+                                            ref={noButtonRef}
+                                            onTouchStart={handleNoTouch}
+                                            className="absolute px-12 py-5 text-xl font-semibold text-muted-foreground bg-secondary rounded-full min-w-[200px] z-30 evasive-button"
+                                            style={{
+                                                transform: `translate(${noButtonPosition.x}px, ${noButtonPosition.y}px)`,
+                                                left: '0',
+                                                top: '0',
+                                            }}
+                                        >
+                                            Nahi yaar
+                                        </button>
+                                    </>
                                 )}
                             </div>
                         </div>

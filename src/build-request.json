@@ -1,87 +1,55 @@
 {
   "kind": "build_request",
-  "title": "Refine evasive “No” button behavior: proximity-triggered smooth slide within button area",
+  "title": "Lock the “Yes” button to exact pixel coordinates with zero movement",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Update the evasive “No” button behavior so it only moves within the limited area around the Yes/No buttons (not the full card or screen).",
+      "text": "Ensure the “Yes” button in the question view remains at its exact current pixel coordinates with no movement at all during the entire “No” button evasive interaction (including when the “No” button switches to absolute positioning).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-5"
+          "recent-5"
         ],
         "quotes": [
-          "1. only within the area around the buttons"
+          "remain exactly at its current pixel coordinates with no movement at all"
         ]
       },
       "acceptanceCriteria": [
-        "When the “No” button moves, its translated position always remains inside a clearly bounded region surrounding the Yes/No buttons (with a small padding), and never roams elsewhere in the layout.",
-        "The “No” button never becomes partially clipped by the bounded region (i.e., it stays fully visible)."
+        "When the “No” button becomes evasive (absolute + translated), the “Yes” button does not shift position by even 1px in either X or Y compared to its initial position after first render.",
+        "The “Yes” button does not visually move due to layout reflow caused by the “No” button leaving the flex flow (i.e., the layout preserves the original spacing/alignment as if the “No” button were still in-flow).",
+        "Switching between non-evasive and evasive “No” button modes does not change the “Yes” button position."
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Change the evasive trigger so the “No” button moves only when the cursor approaches it (proximity-based), rather than moving immediately on hover/enter.",
+      "text": "Remove any hover/active animations or transforms on the “Yes” button that can create visible movement, so the button remains completely motionless while still being clickable.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-5"
+          "recent-5"
         ],
         "quotes": [
-          "2. movement only when the cursor approaches"
+          "remain exactly at its current pixel coordinates with no movement at all"
         ]
       },
       "acceptanceCriteria": [
-        "Moving the mouse around the page does not cause the “No” button to move unless the pointer is within a defined proximity threshold of the “No” button.",
-        "Approaching the “No” button reliably triggers a dodge movement before the pointer reaches the button.",
-        "Touch behavior continues to dodge on touch interaction (or equivalent), without requiring precise hovering."
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "text": "Remove the sudden/bouncy movement and make the “No” button slide away smoothly to its new safe position; also ensure it never gets hidden under/behind the “Yes” button during or after movement.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-3",
-          "msg-5"
-        ],
-        "quotes": [
-          "remove the sudden bounce and just make it move around playfully, make sure it dosn't get hidden under the yes button",
-          "3. slide away smoothly"
-        ]
-      },
-      "acceptanceCriteria": [
-        "The movement animation uses a smooth slide (no overshoot/bounce effect) when transitioning between positions.",
-        "During movement, the “No” button never appears behind the “Yes” button (stacking order and/or overlap avoidance prevents hiding).",
-        "If a randomly chosen target position would overlap the “Yes” button area, a different target position is chosen so the “No” button remains clearly visible and readable."
+        "Hovering or pressing the “Yes” button does not apply scale/transform/transition effects that cause visible motion (no hover scale, no active scale).",
+        "Clicking the “Yes” button still triggers the existing click behavior (burst effect + accepted view transition)."
       ]
     }
   ],
   "constraints": [
-    "Frontend changes must not modify files under frontend/src/components/ui or the immutable hook paths listed in SYSTEM_CONTEXT.",
-    "Keep the current single-page Valentine layout and existing Yes/No interaction structure; only refine the No button’s evasive behavior per the user’s constraints."
+    "Frontend changes must not modify any files under frontend/src/components/ui or other immutablePaths listed in SYSTEM_CONTEXT.",
+    "Keep the existing evasive “No” button behavior and collision/overlap avoidance logic intact, except for adjustments needed to prevent any “Yes” button movement."
   ],
   "nonGoals": [
-    "Adding new pages, routes, or backend APIs.",
-    "Changing the existing Valentine theme, copy, or the “Yes” flow beyond what’s required to adjust the “No” button behavior.",
-    "Implementing continuous autonomous drifting of the “No” button (movement must be proximity-triggered)."
+    "Do not change any user-facing text copy beyond what is necessary to remove “Yes” button movement animations.",
+    "Do not introduce new backend functionality (Motoko backend remains unchanged).",
+    "Do not redesign the Valentine layout or change the “No” button evasive algorithm beyond what is required to keep the “Yes” button perfectly fixed."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
-  },
-  "userProfileUpdate": {
-    "goalsToAdd": [],
-    "goalsToRemove": [],
-    "preferencesToAdd": [
-      "Use English for any user-facing text in build requests."
-    ],
-    "preferencesToRemove": [],
-    "miscToAdd": [],
-    "miscToRemove": [],
-    "fieldsToSet": {},
-    "fieldsToDelete": []
   }
 }

@@ -2,8 +2,8 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-the-evasive-no-button-behavior-so-it-only-moves-within-the-limited-area-around-the-yes-no-buttons-not-the-full-card-or-screen",
-      "featureTitle": "Update the evasive “No” button behavior so it only moves within the limited area around the Yes/No buttons (not the full card or screen).",
+      "featureId": "feature-ensure-the-yes-button-in-the-question-view-remains-at-its-exact-current-pixel-coordinates-with-no-movement-at-all-during-the-entire-no-button-evasive-interaction-including-when-the-no-button-switches-to-absolute-positioning",
+      "featureTitle": "Ensure the “Yes” button in the question view remains at its exact current pixel coordinates with no movement at all during the entire “No” button evasive interaction (including when the “No” button switches to absolute positioning).",
       "files": [
         "frontend/src/App.tsx"
       ],
@@ -20,8 +20,8 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-change-the-evasive-trigger-so-the-no-button-moves-only-when-the-cursor-approaches-it-proximity-based-rather-than-moving-immediately-on-hover-enter",
-      "featureTitle": "Change the evasive trigger so the “No” button moves only when the cursor approaches it (proximity-based), rather than moving immediately on hover/enter.",
+      "featureId": "feature-remove-any-hover-active-animations-or-transforms-on-the-yes-button-that-can-create-visible-movement-so-the-button-remains-completely-motionless-while-still-being-clickable",
+      "featureTitle": "Remove any hover/active animations or transforms on the “Yes” button that can create visible movement, so the button remains completely motionless while still being clickable.",
       "files": [
         "frontend/src/App.tsx"
       ],
@@ -34,25 +34,6 @@
       ],
       "testIds": [
         "REQ-2"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-remove-the-sudden-bouncy-movement-and-make-the-no-button-slide-away-smoothly-to-its-new-safe-position-also-ensure-it-never-gets-hidden-under-behind-the-yes-button-during-or-after-movement",
-      "featureTitle": "Remove the sudden/bouncy movement and make the “No” button slide away smoothly to its new safe position; also ensure it never gets hidden under/behind the “Yes” button during or after movement.",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/index.css"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-3"
       ],
       "confidence": "high"
     }

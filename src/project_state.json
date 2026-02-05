@@ -1,7 +1,37 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 94,
+  "projectStateVersion": 98,
   "summary": "ICP (Internet Computer) full-stack starter app with Motoko backend and React + Vite + Tailwind + shadcn/ui frontend, featuring a Valentine-themed interactive landing experience with cute heart animations and playful \"Yes/No\" interaction constraints.",
+  "architectural_notes": [
+    "Frontend uses React + Vite + Tailwind + shadcn/ui for UI composition and styling.",
+    "Authentication is handled via Internet Identity on the client, with an actor hook to call the Motoko backend canister.",
+    "Candid/TypeScript declaration files are generated for backend canister integration.",
+    "Repository includes an ICP-oriented build/deploy template (Docker, deploy script, canister yamls, workspace configs).",
+    "Interaction design decision: the “No” button should playfully dodge the cursor (not be disabled).",
+    "Post-Yes reveal sequence should display two user-provided videos inline on the page and auto-play immediately after the “Yes” click (sources: two Gmail attachment URLs provided by user).",
+    "User provided a teddy-with-rose-bouquet image asset as a base64-encoded JPEG data URI to use in the landing page UI (for AR-2).",
+    "Teddy-with-rose-bouquet image asset is stored at frontend/public/assets/teddy-with-rose-bouquet.jpg (available for UI use).",
+    "Revert applied: teddy bear element is not rendered in the landing page UI; only the asset remains available.",
+    "Interaction/animation change: no heart animations should run before the user clicks “Yes” (pre-Yes state should be static; celebration can start post-Yes)."
+  ],
+  "known_issues": [
+    "Provided video sources are Gmail attachment URLs, which may require authentication and may not be directly embeddable/streamable by the public frontend."
+  ],
+  "isFixRequest": false,
+  "generatedImages": [
+    {
+      "filename": "frontend/public/assets/generated/valentine-heart-illustration.dim_512x512.png",
+      "description": "Generated Valentine heart illustration asset for UI.",
+      "targetWidth": 512,
+      "targetHeight": 512
+    },
+    {
+      "filename": "frontend/public/assets/generated/valentine-pattern-bg.dim_2048x2048.png",
+      "description": "Generated Valentine pattern background asset for UI.",
+      "targetWidth": 2048,
+      "targetHeight": 2048
+    }
+  ],
   "existing_features": [
     {
       "id": "IF-1",
@@ -223,26 +253,18 @@
       "version": 1
     },
     {
-      "id": "feature-update-the-evasive-no-button-behavior-so-it-only-moves-within-the-limited-area-around-the-yes-no-buttons-not-the-full-card-or-screen",
-      "title": "Update the evasive “No” button behavior so it only moves within the limited area around the Yes/No buttons (not the full card or screen).",
+      "id": "feature-ensure-the-yes-button-in-the-question-view-remains-at-its-exact-current-pixel-coordinates-with-no-movement-at-all-during-the-entire-no-button-evasive-interaction-including-when-the-no-button-switches-to-absolute-positioning",
+      "title": "Ensure the “Yes” button in the question view remains at its exact current pixel coordinates with no movement at all during the entire “No” button evasive interaction (including when the “No” button switches to absolute positioning).",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-change-the-evasive-trigger-so-the-no-button-moves-only-when-the-cursor-approaches-it-proximity-based-rather-than-moving-immediately-on-hover-enter",
-      "title": "Change the evasive trigger so the “No” button moves only when the cursor approaches it (proximity-based), rather than moving immediately on hover/enter.",
+      "id": "feature-remove-any-hover-active-animations-or-transforms-on-the-yes-button-that-can-create-visible-movement-so-the-button-remains-completely-motionless-while-still-being-clickable",
+      "title": "Remove any hover/active animations or transforms on the “Yes” button that can create visible movement, so the button remains completely motionless while still being clickable.",
       "reqIds": [
         "REQ-2"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-remove-the-sudden-bouncy-movement-and-make-the-no-button-slide-away-smoothly-to-its-new-safe-position-also-ensure-it-never-gets-hidden-under-behind-the-yes-button-during-or-after-movement",
-      "title": "Remove the sudden/bouncy movement and make the “No” button slide away smoothly to its new safe position; also ensure it never gets hidden under/behind the “Yes” button during or after movement.",
-      "reqIds": [
-        "REQ-3"
       ],
       "version": 1
     }
@@ -255,37 +277,7 @@
       "status": "pending"
     }
   ],
-  "architectural_notes": [
-    "Frontend uses React + Vite + Tailwind + shadcn/ui for UI composition and styling.",
-    "Authentication is handled via Internet Identity on the client, with an actor hook to call the Motoko backend canister.",
-    "Candid/TypeScript declaration files are generated for backend canister integration.",
-    "Repository includes an ICP-oriented build/deploy template (Docker, deploy script, canister yamls, workspace configs).",
-    "Interaction design decision: the “No” button should playfully dodge the cursor (not be disabled).",
-    "Post-Yes reveal sequence should display two user-provided videos inline on the page and auto-play immediately after the “Yes” click (sources: two Gmail attachment URLs provided by user).",
-    "User provided a teddy-with-rose-bouquet image asset as a base64-encoded JPEG data URI to use in the landing page UI (for AR-2).",
-    "Teddy-with-rose-bouquet image asset is stored at frontend/public/assets/teddy-with-rose-bouquet.jpg (available for UI use).",
-    "Revert applied: teddy bear element is not rendered in the landing page UI; only the asset remains available.",
-    "Interaction/animation change: no heart animations should run before the user clicks “Yes” (pre-Yes state should be static; celebration can start post-Yes)."
-  ],
-  "known_issues": [
-    "Provided video sources are Gmail attachment URLs, which may require authentication and may not be directly embeddable/streamable by the public frontend."
-  ],
-  "isFixRequest": true,
-  "generatedImages": [
-    {
-      "filename": "frontend/public/assets/generated/valentine-heart-illustration.dim_512x512.png",
-      "description": "Generated Valentine heart illustration asset for UI.",
-      "targetWidth": 512,
-      "targetHeight": 512
-    },
-    {
-      "filename": "frontend/public/assets/generated/valentine-pattern-bg.dim_2048x2048.png",
-      "description": "Generated Valentine pattern background asset for UI.",
-      "targetWidth": 2048,
-      "targetHeight": 2048
-    }
-  ],
-  "projectName": "Refine evasive “No” button behavior: proximity-triggered smooth slide within button area",
+  "projectName": "Lock the “Yes” button to exact pixel coordinates with zero movement",
   "clarification_mode": "thinking",
   "clarification_rounds": 1
 }

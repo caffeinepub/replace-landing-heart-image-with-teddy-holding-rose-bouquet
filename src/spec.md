@@ -1,11 +1,10 @@
 # Specification
 
 ## Summary
-**Goal:** Refine the evasive “No” button so it dodges smoothly only when the cursor approaches, and stays within a bounded area around the Yes/No buttons without overlapping or hiding behind “Yes”.
+**Goal:** Keep the “Yes” button perfectly fixed at its current pixel position throughout the “No” button’s evasive behavior, with no visual movement from layout or animations.
 
 **Planned changes:**
-- Constrain the “No” button’s movement to a clearly bounded region surrounding the Yes/No button area (with padding), ensuring the button remains fully visible (not clipped).
-- Switch the dodge trigger from immediate hover/enter to a proximity-based trigger (moves only when the pointer gets within a defined distance of the “No” button); keep touch interactions working as a dodge trigger.
-- Replace bouncy/sudden motion with a smooth sliding transition between positions, and prevent the “No” button from being obscured by the “Yes” button (via overlap avoidance and stacking/position safeguards).
+- Prevent any layout reflow from the “No” button switching to absolute positioning by preserving the original in-flow space so the “Yes” button’s coordinates never shift.
+- Remove any hover/active transforms, transitions, or animations on the “Yes” button that could cause visible movement, while keeping it fully clickable and preserving its existing click behavior.
 
-**User-visible outcome:** The “No” button only scoots away when you get close to it, gliding smoothly to a new spot within the button area, while always staying fully visible and never ending up behind or under the “Yes” button.
+**User-visible outcome:** During the evasive “No” interaction, the “Yes” button stays completely motionless (no 1px shifts and no hover/press motion) while still working normally when clicked.

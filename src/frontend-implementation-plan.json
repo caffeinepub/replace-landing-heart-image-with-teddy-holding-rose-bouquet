@@ -1,57 +1,36 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Refine evasive “No” button: bounded arena, proximity trigger, smooth non-overlapping slide",
+  "title": "Lock “Yes” button position during evasive “No” interaction",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Constrain the evasive “No” button’s movement to a bounded region surrounding the Yes/No buttons (with padding) and keep it fully visible within that region.",
+      "summary": "Keep the “Yes” button fixed at its exact pixel coordinates by preserving the original in-flow layout space when the “No” button switches to absolute positioning.",
       "acceptanceCriteria": [
-        "When the “No” button moves, its translated position always remains inside a clearly bounded region surrounding the Yes/No buttons (with a small padding), and never roams elsewhere in the layout.",
-        "The “No” button never becomes partially clipped by the bounded region (i.e., it stays fully visible)."
+        "When the “No” button becomes evasive (absolute + translated), the “Yes” button does not shift position by even 1px in either X or Y compared to its initial position after first render.",
+        "The “Yes” button does not visually move due to layout reflow caused by the “No” button leaving the flex flow (i.e., the layout preserves the original spacing/alignment as if the “No” button were still in-flow).",
+        "Switching between non-evasive and evasive “No” button modes does not change the “Yes” button position."
       ],
       "file_operations": [
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Replace the current container-wide movement bounds with a dedicated, clearly bounded “button arena” region around the Yes/No buttons (e.g., a relative wrapper sized to the buttons + padding) and compute random target positions within that arena while clamping so the No button remains fully inside (no clipping). Add/adjust refs as needed (e.g., arena ref) and ensure the No button is positioned relative to that arena rather than the larger card area."
+          "description": "Adjust the question view button rendering so the original flex layout spacing remains identical before/after evasive mode: keep an in-flow “No” button-sized placeholder (e.g., the original No button element with visibility hidden / pointer-events none) when evasive mode is active, and render the evasive absolute-positioned “No” button separately on top. This prevents flex re-centering and locks the “Yes” button to its initial pixel coordinates while keeping the existing evasive movement and overlap-avoidance logic intact."
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Trigger evasive movement only when the cursor approaches the “No” button (proximity-based), while preserving touch-based dodge behavior.",
+      "summary": "Remove any hover/active transform animations from the “Yes” button so it never visually moves while remaining clickable and retaining current click behavior.",
       "acceptanceCriteria": [
-        "Moving the mouse around the page does not cause the “No” button to move unless the pointer is within a defined proximity threshold of the “No” button.",
-        "Approaching the “No” button reliably triggers a dodge movement before the pointer reaches the button.",
-        "Touch behavior continues to dodge on touch interaction (or equivalent), without requiring precise hovering."
+        "Hovering or pressing the “Yes” button does not apply scale/transform/transition effects that cause visible motion (no hover scale, no active scale).",
+        "Clicking the “Yes” button still triggers the existing click behavior (burst effect + accepted view transition)."
       ],
       "file_operations": [
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Remove/avoid immediate onMouseEnter-triggered dodging for desktop and implement proximity detection (e.g., handle mouse move within the button arena) that computes pointer distance to the No button and triggers a reposition only when within a configurable threshold. Add throttling/cooldown to prevent rapid retriggers while the pointer remains near. Keep (or adjust) the existing touch handler so touch interaction still triggers an evasive move without requiring hover."
-        }
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "summary": "Make the “No” button slide smoothly (no bounce) and ensure it never becomes hidden behind or overlaps the “Yes” button by selecting a non-overlapping safe target position.",
-      "acceptanceCriteria": [
-        "The movement animation uses a smooth slide (no overshoot/bounce effect) when transitioning between positions.",
-        "During movement, the “No” button never appears behind the “Yes” button (stacking order and/or overlap avoidance prevents hiding).",
-        "If a randomly chosen target position would overlap the “Yes” button area, a different target position is chosen so the “No” button remains clearly visible and readable."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Replace the current bounce-style Web Animations sequence with a smooth slide transition (e.g., via CSS transition on transform or a single ease-out animation without overshoot). Ensure stacking order keeps the No button above the Yes button during/after movement (z-index adjustment when evasive). Add overlap avoidance when choosing a new target: measure the Yes button bounds within the same arena coordinate space and retry/select another candidate if the No button rectangle would intersect the Yes button area (optionally with a small safety margin)."
-        },
-        {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Adjust the evasive button styling to support smooth sliding (e.g., define a default transition for transform on .evasive-button for non-reduced-motion users, while keeping/maintaining reduced-motion behavior) and avoid any bounce/overshoot timing functions."
+          "description": "Update the “Yes” button Tailwind classes to remove transform-based interactions (e.g., remove hover:scale-* / active:scale-* and avoid transition-all if it could animate transforms). Keep non-motion visual affordances (color/shadow) as desired, and ensure the existing onClick behavior (HeartBurst + accepted transition) remains unchanged."
         }
       ]
     }
