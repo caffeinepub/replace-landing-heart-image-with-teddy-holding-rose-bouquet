@@ -1,37 +1,87 @@
 {
   "kind": "build_request",
-  "title": "Update the paragraph text below the landing question",
+  "title": "Refine evasive “No” button behavior: proximity-triggered smooth slide within button area",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Update the paragraph text shown directly below the landing-page question (“Yash will you be my valentine?”) to exactly the following single message: \"I've been thinking about this for a while and I can't imagine celebrating Valentine's with anyone else but you. I was waiting for you to ask me the question but it's okay maybe next time. Dheere dheere sikha dungi sab. This is my first Valentine's toh mai bahut excited hu. You better not spoil it, varna bahut maarungi. Baaki anyways I love you and you know it❤️\". Apply this change only to the selected paragraph element at XPath /html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/p[1] (currently rendered by the <p> under the question in frontend/src/App.tsx).",
+      "text": "Update the evasive “No” button behavior so it only moves within the limited area around the Yes/No buttons (not the full card or screen).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-14"
+          "msg-5"
         ],
         "quotes": [
-          "Replace the text below the question with: \"I've been thinking about this for a while and I can't imagine celebrating Valentine's with anyone else but you. I was waiting for you to ask me the question but it's okay maybe next time. Dheere dheere sikha dungi sab. This is my first Valentine's toh mai bahut excited hu. You better not spoil it, varna bahut maarungi. Baaki anyways I love you and you know it❤️\""
+          "1. only within the area around the buttons"
         ]
       },
       "acceptanceCriteria": [
-        "On the initial “question” view, the paragraph immediately below the main question displays the new provided message exactly (including punctuation and the ❤️ character).",
-        "No other text (question headline, button labels, accepted/declined screens, footer) is changed.",
-        "No images are changed (the selected img element remains unchanged)."
+        "When the “No” button moves, its translated position always remains inside a clearly bounded region surrounding the Yes/No buttons (with a small padding), and never roams elsewhere in the layout.",
+        "The “No” button never becomes partially clipped by the bounded region (i.e., it stays fully visible)."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Change the evasive trigger so the “No” button moves only when the cursor approaches it (proximity-based), rather than moving immediately on hover/enter.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "2. movement only when the cursor approaches"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Moving the mouse around the page does not cause the “No” button to move unless the pointer is within a defined proximity threshold of the “No” button.",
+        "Approaching the “No” button reliably triggers a dodge movement before the pointer reaches the button.",
+        "Touch behavior continues to dodge on touch interaction (or equivalent), without requiring precise hovering."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Remove the sudden/bouncy movement and make the “No” button slide away smoothly to its new safe position; also ensure it never gets hidden under/behind the “Yes” button during or after movement.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3",
+          "msg-5"
+        ],
+        "quotes": [
+          "remove the sudden bounce and just make it move around playfully, make sure it dosn't get hidden under the yes button",
+          "3. slide away smoothly"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The movement animation uses a smooth slide (no overshoot/bounce effect) when transitioning between positions.",
+        "During movement, the “No” button never appears behind the “Yes” button (stacking order and/or overlap avoidance prevents hiding).",
+        "If a randomly chosen target position would overlap the “Yes” button area, a different target position is chosen so the “No” button remains clearly visible and readable."
       ]
     }
   ],
   "constraints": [
-    "Apply changes only to the selected paragraph element (XPath /html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/p[1]); do not modify the selected image element(s).",
-    "Do not modify any files under frontend/src/components/ui or other immutablePaths listed in SYSTEM_CONTEXT."
+    "Frontend changes must not modify files under frontend/src/components/ui or the immutable hook paths listed in SYSTEM_CONTEXT.",
+    "Keep the current single-page Valentine layout and existing Yes/No interaction structure; only refine the No button’s evasive behavior per the user’s constraints."
   ],
   "nonGoals": [
-    "Replacing or editing any images on the page.",
-    "Changing the main question text, button behavior, or the accepted/declined screens."
+    "Adding new pages, routes, or backend APIs.",
+    "Changing the existing Valentine theme, copy, or the “Yes” flow beyond what’s required to adjust the “No” button behavior.",
+    "Implementing continuous autonomous drifting of the “No” button (movement must be proximity-triggered)."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [
+      "Use English for any user-facing text in build requests."
+    ],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
   }
 }

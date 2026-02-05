@@ -2,8 +2,8 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-the-paragraph-text-shown-directly-below-the-landing-page-question-yash-will-you-be-my-valentine-to-exactly-the-following-single-message-i-ve-been-thinking-about-this-for-a-while-and-i-can-t-imagine-celebrating-valentine-s-with-anyone-else-but-you-i-was-waiting-for-you-to-ask-me-the-question-but-it-s-okay-maybe-next-time-dheere-dheere-sikha-dungi-sab-this-is-my-first-valentine-s-toh-mai-bahut-excited-hu-you-better-not-spoil-it-varna-bahut-maarungi-baaki-anyways-i-love-you-and-you-know-it-apply-this-change-only-to-the-selected-paragraph-element-at-xpath-html-1-body-1-div-1-div-1-div-1-div-1-div-2-div-2-p-1-currently-rendered-by-the-p-under-the-question-in-frontend-src-app-tsx",
-      "featureTitle": "Update the paragraph text shown directly below the landing-page question (“Yash will you be my valentine?”) to exactly the following single message: \"I've been thinking about this for a while and I can't imagine celebrating Valentine's with anyone else but you. I was waiting for you to ask me the question but it's okay maybe next time. Dheere dheere sikha dungi sab. This is my first Valentine's toh mai bahut excited hu. You better not spoil it, varna bahut maarungi. Baaki anyways I love you and you know it❤️\". Apply this change only to the selected paragraph element at XPath /html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/p[1] (currently rendered by the <p> under the question in frontend/src/App.tsx).",
+      "featureId": "feature-update-the-evasive-no-button-behavior-so-it-only-moves-within-the-limited-area-around-the-yes-no-buttons-not-the-full-card-or-screen",
+      "featureTitle": "Update the evasive “No” button behavior so it only moves within the limited area around the Yes/No buttons (not the full card or screen).",
       "files": [
         "frontend/src/App.tsx"
       ],
@@ -16,6 +16,43 @@
       ],
       "testIds": [
         "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-change-the-evasive-trigger-so-the-no-button-moves-only-when-the-cursor-approaches-it-proximity-based-rather-than-moving-immediately-on-hover-enter",
+      "featureTitle": "Change the evasive trigger so the “No” button moves only when the cursor approaches it (proximity-based), rather than moving immediately on hover/enter.",
+      "files": [
+        "frontend/src/App.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-remove-the-sudden-bouncy-movement-and-make-the-no-button-slide-away-smoothly-to-its-new-safe-position-also-ensure-it-never-gets-hidden-under-behind-the-yes-button-during-or-after-movement",
+      "featureTitle": "Remove the sudden/bouncy movement and make the “No” button slide away smoothly to its new safe position; also ensure it never gets hidden under/behind the “Yes” button during or after movement.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
       ],
       "confidence": "high"
     }

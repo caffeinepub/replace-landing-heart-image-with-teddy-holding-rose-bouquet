@@ -130,6 +130,19 @@
     animation: burst-out 0.8s ease-out forwards;
 }
 
+/* Evasive button smooth slide animation */
+.evasive-button {
+    will-change: transform;
+    transition: transform 0.5s ease-out;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .evasive-button {
+        transition: transform 0.3s ease-out;
+    }
+}
+
 /* Background pattern styling */
 .valentine-bg {
     background-image: url('/assets/generated/valentine-pattern-bg.dim_2048x2048.png');

@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 46,
+  "projectStateVersion": 94,
   "summary": "ICP (Internet Computer) full-stack starter app with Motoko backend and React + Vite + Tailwind + shadcn/ui frontend, featuring a Valentine-themed interactive landing experience with cute heart animations and playful \"Yes/No\" interaction constraints.",
   "existing_features": [
     {
@@ -132,18 +132,125 @@
       "version": 1
     },
     {
-      "id": "feature-update-the-paragraph-text-shown-directly-below-the-landing-page-question-yash-will-you-be-my-valentine-to-exactly-the-following-single-message-i-ve-been-thinking-about-this-for-a-while-and-i-can-t-imagine-celebrating-valentine-s-with-anyone-else-but-you-i-was-waiting-for-you-to-ask-me-the-question-but-it-s-okay-maybe-next-time-dheere-dheere-sikha-dungi-sab-this-is-my-first-valentine-s-toh-mai-bahut-excited-hu-you-better-not-spoil-it-varna-bahut-maarungi-baaki-anyways-i-love-you-and-you-know-it-apply-this-change-only-to-the-selected-paragraph-element-at-xpath-html-1-body-1-div-1-div-1-div-1-div-1-div-2-div-2-p-1-currently-rendered-by-the-p-under-the-question-in-frontend-src-app-tsx",
-      "title": "Update the paragraph text shown directly below the landing-page question (“Yash will you be my valentine?”) to exactly the following single message: \"I've been thinking about this for a while and I can't imagine celebrating Valentine's with anyone else but you. I was waiting for you to ask me the question but it's okay maybe next time. Dheere dheere sikha dungi sab. This is my first Valentine's toh mai bahut excited hu. You better not spoil it, varna bahut maarungi. Baaki anyways I love you and you know it❤️\". Apply this change only to the selected paragraph element at XPath /html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/p[1] (currently rendered by the <p> under the question in frontend/src/App.tsx).",
+      "id": "IF-12",
+      "title": "Updated subtext below landing page question prompt",
+      "synonyms": [
+        "landing subtext",
+        "text below question prompt"
+      ],
+      "description": "Landing page text shown below the main question prompt was replaced/updated per request.",
+      "reqIds": [
+        "AR-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "IF-13",
+      "title": "Updated landing page choice button labels",
+      "synonyms": [
+        "choice text update",
+        "Yes/No label change"
+      ],
+      "description": "Landing page choice text updated: \"yes, I'd love to!\" → \"Haanji obviously\" and \"not yet...\" → \"Nahi yaar\".",
+      "reqIds": [
+        "AR-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "IF-14",
+      "title": "Yes/No options aligned on initial page load",
+      "synonyms": [
+        "initial button alignment",
+        "pre-interaction Yes/No layout"
+      ],
+      "description": "Adjusted the landing page layout so the “Yes” and “No” options render aligned on initial page load (before any interaction/animation occurs).",
+      "reqIds": [
+        "AR-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "IF-15",
+      "title": "Updated landing page text to “I LOVE YOU SONPARI”",
+      "synonyms": [
+        "landing page text replacement",
+        "I LOVE YOU SONPARI copy update"
+      ],
+      "description": "Replaced the relevant landing page text per request with: \"I LOVE YOU SONPARI\".",
+      "reqIds": [
+        "AR-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "IF-16",
+      "title": "Heart animations gated until after “Yes” click",
+      "synonyms": [
+        "no pre-Yes heart animation",
+        "post-Yes-only celebration"
+      ],
+      "description": "Updated the landing experience so heart/celebration animations do not run in the pre-Yes state; animations begin only after the user clicks “Yes”.",
+      "reqIds": [
+        "AR-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "IF-17",
+      "title": "“Yes” button remains fixed while only “No” button dodges",
+      "synonyms": [
+        "fix yes button movement",
+        "separate yes/no motion logic"
+      ],
+      "description": "Updated the landing interaction logic so the “Yes” button position remains stable and is not affected by any dodge/animation code; only the “No” button performs evasive movement.",
+      "reqIds": [
+        "AR-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "IF-18",
+      "title": "Smooth transition animation for evasive “No” button movement",
+      "synonyms": [
+        "No button smooth dodge",
+        "dodge transition"
+      ],
+      "description": "Added a small transition/animation so the “No” button’s evasive repositioning feels smoother rather than jumping abruptly.",
+      "reqIds": [
+        "AR-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-evasive-no-button-behavior-so-it-only-moves-within-the-limited-area-around-the-yes-no-buttons-not-the-full-card-or-screen",
+      "title": "Update the evasive “No” button behavior so it only moves within the limited area around the Yes/No buttons (not the full card or screen).",
       "reqIds": [
         "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-change-the-evasive-trigger-so-the-no-button-moves-only-when-the-cursor-approaches-it-proximity-based-rather-than-moving-immediately-on-hover-enter",
+      "title": "Change the evasive trigger so the “No” button moves only when the cursor approaches it (proximity-based), rather than moving immediately on hover/enter.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-the-sudden-bouncy-movement-and-make-the-no-button-slide-away-smoothly-to-its-new-safe-position-also-ensure-it-never-gets-hidden-under-behind-the-yes-button-during-or-after-movement",
+      "title": "Remove the sudden/bouncy movement and make the “No” button slide away smoothly to its new safe position; also ensure it never gets hidden under/behind the “Yes” button during or after movement.",
+      "reqIds": [
+        "REQ-3"
       ],
       "version": 1
     }
   ],
   "new_feature_requests": [
     {
-      "id": "AR-3",
-      "summary": "Replace/update the text shown below the landing page question prompt (user requested: \"replace the text below the questio\").",
+      "id": "AR-10",
+      "summary": "Refine “No” button evasive behavior: remove sudden bounce, make movement playfully roam, and ensure it never gets hidden under/behind the “Yes” button.",
       "reqIds": [],
       "status": "pending"
     }
@@ -154,16 +261,16 @@
     "Candid/TypeScript declaration files are generated for backend canister integration.",
     "Repository includes an ICP-oriented build/deploy template (Docker, deploy script, canister yamls, workspace configs).",
     "Interaction design decision: the “No” button should playfully dodge the cursor (not be disabled).",
-    "Animation design decision: include both continuous floating hearts in the background and a burst effect when clicking “Yes.”",
     "Post-Yes reveal sequence should display two user-provided videos inline on the page and auto-play immediately after the “Yes” click (sources: two Gmail attachment URLs provided by user).",
     "User provided a teddy-with-rose-bouquet image asset as a base64-encoded JPEG data URI to use in the landing page UI (for AR-2).",
     "Teddy-with-rose-bouquet image asset is stored at frontend/public/assets/teddy-with-rose-bouquet.jpg (available for UI use).",
-    "Revert applied: teddy bear element is not rendered in the landing page UI; only the asset remains available."
+    "Revert applied: teddy bear element is not rendered in the landing page UI; only the asset remains available.",
+    "Interaction/animation change: no heart animations should run before the user clicks “Yes” (pre-Yes state should be static; celebration can start post-Yes)."
   ],
   "known_issues": [
     "Provided video sources are Gmail attachment URLs, which may require authentication and may not be directly embeddable/streamable by the public frontend."
   ],
-  "isFixRequest": false,
+  "isFixRequest": true,
   "generatedImages": [
     {
       "filename": "frontend/public/assets/generated/valentine-heart-illustration.dim_512x512.png",
@@ -178,7 +285,7 @@
       "targetHeight": 2048
     }
   ],
-  "projectName": "Update the paragraph text below the landing question",
+  "projectName": "Refine evasive “No” button behavior: proximity-triggered smooth slide within button area",
   "clarification_mode": "thinking",
-  "clarification_rounds": 0
+  "clarification_rounds": 1
 }

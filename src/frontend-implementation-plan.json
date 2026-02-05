@@ -1,21 +1,57 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Update landing-page paragraph text under the main question",
+  "title": "Refine evasive “No” button: bounded arena, proximity trigger, smooth non-overlapping slide",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Replace the paragraph text directly below “Yash will you be my valentine?” with the provided exact message, without changing any other UI text or images.",
+      "summary": "Constrain the evasive “No” button’s movement to a bounded region surrounding the Yes/No buttons (with padding) and keep it fully visible within that region.",
       "acceptanceCriteria": [
-        "On the initial “question” view, the paragraph immediately below the main question displays the new provided message exactly (including punctuation and the ❤️ character).",
-        "No other text (question headline, button labels, accepted/declined screens, footer) is changed.",
-        "No images are changed (the selected img element remains unchanged)."
+        "When the “No” button moves, its translated position always remains inside a clearly bounded region surrounding the Yes/No buttons (with a small padding), and never roams elsewhere in the layout.",
+        "The “No” button never becomes partially clipped by the bounded region (i.e., it stays fully visible)."
       ],
       "file_operations": [
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Update only the existing <p> element directly under the landing-page question (the paragraph in the question view) so its text content exactly matches: \"I've been thinking about this for a while and I can't imagine celebrating Valentine's with anyone else but you. I was waiting for you to ask me the question but it's okay maybe next time. Dheere dheere sikha dungi sab. This is my first Valentine's toh mai bahut excited hu. You better not spoil it, varna bahut maarungi. Baaki anyways I love you and you know it❤️\". Do not change any other strings or the image reference."
+          "description": "Replace the current container-wide movement bounds with a dedicated, clearly bounded “button arena” region around the Yes/No buttons (e.g., a relative wrapper sized to the buttons + padding) and compute random target positions within that arena while clamping so the No button remains fully inside (no clipping). Add/adjust refs as needed (e.g., arena ref) and ensure the No button is positioned relative to that arena rather than the larger card area."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Trigger evasive movement only when the cursor approaches the “No” button (proximity-based), while preserving touch-based dodge behavior.",
+      "acceptanceCriteria": [
+        "Moving the mouse around the page does not cause the “No” button to move unless the pointer is within a defined proximity threshold of the “No” button.",
+        "Approaching the “No” button reliably triggers a dodge movement before the pointer reaches the button.",
+        "Touch behavior continues to dodge on touch interaction (or equivalent), without requiring precise hovering."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Remove/avoid immediate onMouseEnter-triggered dodging for desktop and implement proximity detection (e.g., handle mouse move within the button arena) that computes pointer distance to the No button and triggers a reposition only when within a configurable threshold. Add throttling/cooldown to prevent rapid retriggers while the pointer remains near. Keep (or adjust) the existing touch handler so touch interaction still triggers an evasive move without requiring hover."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Make the “No” button slide smoothly (no bounce) and ensure it never becomes hidden behind or overlaps the “Yes” button by selecting a non-overlapping safe target position.",
+      "acceptanceCriteria": [
+        "The movement animation uses a smooth slide (no overshoot/bounce effect) when transitioning between positions.",
+        "During movement, the “No” button never appears behind the “Yes” button (stacking order and/or overlap avoidance prevents hiding).",
+        "If a randomly chosen target position would overlap the “Yes” button area, a different target position is chosen so the “No” button remains clearly visible and readable."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Replace the current bounce-style Web Animations sequence with a smooth slide transition (e.g., via CSS transition on transform or a single ease-out animation without overshoot). Ensure stacking order keeps the No button above the Yes button during/after movement (z-index adjustment when evasive). Add overlap avoidance when choosing a new target: measure the Yes button bounds within the same arena coordinate space and retry/select another candidate if the No button rectangle would intersect the Yes button area (optionally with a small safety margin)."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Adjust the evasive button styling to support smooth sliding (e.g., define a default transition for transform on .evasive-button for non-reduced-motion users, while keeping/maintaining reduced-motion behavior) and avoid any bounce/overshoot timing functions."
         }
       ]
     }
