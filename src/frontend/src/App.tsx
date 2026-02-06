@@ -12,11 +12,11 @@ interface BurstEffect {
     y: number;
 }
 
-// Primary user flow verification (v15):
-// 1. Question view displays with original heart illustration (not transparent)
+// Primary user flow verification (v30):
+// 1. Question view displays with heart illustration from local assets
 // 2. "Haanji obviously" button triggers heart burst and transitions to accepted view
 // 3. "Nahi yaar" button becomes evasive on hover/touch (smooth slide animation)
-// 4. Accepted view shows celebration hearts animation with success message
+// 4. Accepted view shows celebration hearts animation with 2D red rose bouquet image and success message
 // 5. No evasive behavior should interfere with "Yes" button interaction
 
 function App() {
@@ -285,21 +285,27 @@ function App() {
                         <CelebrationHearts />
                         <div className="fade-in text-center space-y-8 relative z-10">
                             <div className="flex justify-center mb-6">
-                                <img
-                                    src="/assets/generated/valentine-heart-illustration.dim_512x512.png"
-                                    alt="Heart"
-                                    className="w-56 h-56 pulse-heart"
-                                />
+                                {/* Bouquet with glow container */}
+                                <div className="relative isolate">
+                                    {/* Pulsing glow behind bouquet */}
+                                    <div className="bouquet-glow" aria-hidden="true" />
+                                    {/* Bouquet image with 1s fade-in */}
+                                    <img
+                                        src="/assets/generated/red-rose-bouquet-2d.dim_512x512.png"
+                                        alt="Red Rose Bouquet"
+                                        className="w-56 h-56 object-contain bouquet-fade-in relative z-10"
+                                    />
+                                </div>
                             </div>
                             <div className="space-y-6">
                                 <h1 className="text-6xl md:text-7xl font-bold text-primary tracking-tight">
                                     I LOVE YOU SONPARI
                                 </h1>
                                 <p className="text-2xl md:text-3xl text-foreground font-semibold">
-                                    You just made me the happiest person alive!
+                                    You better be my valentine forever, and I promise to be yours!
                                 </p>
                                 <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                                    I can't wait to spend this Valentine's Day with you. Get ready for something special! 💕
+                                    Thank you for being there for me whenever I needed you. Thank you for making me feel so loved. Thank you for making me laugh. Thank you for loving me when I had given up on love. Thank you for everything that you do for me. You have no idea what you mean to me and how much I love you. I'll never forget ki aapne kitni mehnat se, kitne pyaar se pataya hai mujhe. You literally earned my love. Aajtak mere pyaar ke liye mujhse itni ladai sirf aapne hi kari hai. I'm extremely grateful for you and your love. Every moment that I spend with you is just pure peace, koi tension koi stress yaad hi nahi rehta. It just feels like kuch hoga toh aap sambhal hi loge. Beta sach bata rahi hu agar kabhu galti se break up ka thought bhi aaye toh bata dena, mai thappad marke thik kar dungi. Hugging you is the best feeling in the world (actually aapke cheeks khana is the best feeling). Bas ab zyada tareef nahi karungi, blush karna band karo. I love you bahut bahut bahut bahut zyadaaaaaaaaaaaa mera cutu mera chotu baby meri jaan
                                 </p>
                             </div>
                             <div className="pt-8 flex flex-wrap gap-4 justify-center text-4xl">

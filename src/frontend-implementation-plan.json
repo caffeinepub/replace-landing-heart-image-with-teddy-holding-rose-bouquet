@@ -1,21 +1,49 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Replace accepted-view bouncing emoji span contents with repeated emoji sequence",
+  "title": "Accepted view bouquet-specific 1s fade-in + subtle pulsing glow (reduced-motion aware)",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Change only the five bouncing emoji <span> elements in the accepted view to display exactly \"❤ 🥰 😏 💋💌\" while preserving all existing classes, layout, and behavior.",
+      "summary": "Animate only the accepted-view 2D bouquet image with a 1.0s fade-in when the accepted view is shown, without changing the existing global .fade-in timing elsewhere.",
       "acceptanceCriteria": [
-        "In the accepted view, the row of five bouncing emoji spans still renders as five separate spans with the same existing className values as before.",
-        "Each of those five spans displays exactly the string \"❤ 🥰 😏 💋💌\" as its content.",
-        "No other text or UI outside these five spans is changed."
+        "When transitioning into the accepted view, only the bouquet image transitions from invisible to visible with a 1.0s fade-in.",
+        "The existing .fade-in animation used elsewhere (currently 0.6s) remains unchanged for non-bouquet content.",
+        "The bouquet image remains the same size/footprint as before (w-56 h-56 object-contain).",
+        "With prefers-reduced-motion enabled, the bouquet does not animate (or uses a near-instant transition)."
       ],
       "file_operations": [
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "In the accepted view emoji row (the five animate-bounce spans), update only the text content of those five spans (currently single heart/emoji characters) to exactly: \"❤ 🥰 😏 💋💌\" for each span, without changing any className values (including delay-*), structure, spacing wrappers, or any other UI text."
+          "description": "In the accepted view only, apply a bouquet-specific animation class to the 2D bouquet <img> (keeping the existing w-56 h-56 object-contain sizing intact) so its fade-in timing can be 1.0s without changing the .fade-in wrapper used by other views."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add a new bouquet-only fade-in animation (1.0s) and a prefers-reduced-motion override that disables or near-instantly completes the bouquet animation, while leaving the existing .fade-in (0.6s) definition unchanged."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Add a subtle glow behind the accepted-view 2D bouquet image and make it gently pulse continuously without affecting layout or overlapping/tinting the bouquet or nearby text (reduced-motion aware).",
+      "acceptanceCriteria": [
+        "A soft, subtle glow is visible behind the bouquet image in the accepted view.",
+        "The glow gently pulses (smooth in/out) and does not distract from readability of surrounding text.",
+        "The glow is layered behind the bouquet image (no tint over the bouquet artwork itself).",
+        "With prefers-reduced-motion enabled, the glow does not pulse (static glow or removed)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "In the accepted view only, wrap the bouquet image in a relative/isolation container and render a separate, absolutely-positioned glow element behind the image (with appropriate z-index layering) so it does not affect layout and cannot overlap surrounding text outside the image area."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add CSS for the bouquet glow element: a subtle blurred radial glow (behind the bouquet via stacking context) with a gentle pulsing keyframes animation; include prefers-reduced-motion handling to stop the pulsing (static glow or no animation)."
         }
       ]
     }

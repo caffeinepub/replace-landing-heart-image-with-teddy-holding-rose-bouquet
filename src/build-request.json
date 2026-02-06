@@ -1,36 +1,55 @@
 {
   "kind": "build_request",
-  "title": "Replace accepted-view emoji spans with a repeated emoji sequence",
+  "title": "Add 1s bouquet fade-in and subtle pulsing glow on the Yes (accepted) page",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Update only the 5 selected <span> elements in the accepted view (the five bouncing emoji spans) so that each span’s text content becomes exactly: \"❤ 🥰 😏 💋💌\", while keeping all existing classes (including animate-bounce and delay classes), layout, and behavior unchanged.",
+      "text": "On the accepted (Yes) view, animate the 2D rose bouquet image so it fades in over 1 second when the view is shown (do not change the fade-in timing for other sections like the question/declined views).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "user-1"
+          "msg-8"
         ],
         "quotes": [
-          "replace with ❤ 🥰 😏 💋💌",
-          "3 yes"
+          "1. 1s"
         ]
       },
       "acceptanceCriteria": [
-        "In the accepted view, the row of five bouncing emoji spans still renders as five separate spans with the same existing className values as before.",
-        "Each of those five spans displays exactly the string \"❤ 🥰 😏 💋💌\" as its content.",
-        "No other text or UI outside these five spans is changed."
+        "When transitioning into the accepted view, only the bouquet image transitions from invisible to visible with a 1.0s fade-in.",
+        "The existing .fade-in animation used elsewhere (currently 0.6s) remains unchanged for non-bouquet content.",
+        "The bouquet image remains the same size/footprint as before (w-56 h-56 object-contain).",
+        "With prefers-reduced-motion enabled, the bouquet does not animate (or uses a near-instant transition)."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Add a subtle background glow behind the 2D rose bouquet image on the accepted (Yes) view, and make the glow gently pulse continuously without affecting layout or overlapping text.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-8"
+        ],
+        "quotes": [
+          "2. subtle",
+          "3. gently pulse"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A soft, subtle glow is visible behind the bouquet image in the accepted view.",
+        "The glow gently pulses (smooth in/out) and does not distract from readability of surrounding text.",
+        "The glow is layered behind the bouquet image (no tint over the bouquet artwork itself).",
+        "With prefers-reduced-motion enabled, the glow does not pulse (static glow or removed)."
       ]
     }
   ],
   "constraints": [
-    "Apply changes ONLY to the 5 selected span elements (the five emoji spans in the accepted view).",
-    "Do not modify any files under frontend/src/components/ui or any immutable hook/bootstrap paths listed in SYSTEM_CONTEXT."
+    "Frontend immutable paths must not be modified: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui.",
+    "Do not introduce additional backend services; keep backend as a single Motoko actor (no backend changes expected for this request)."
   ],
   "nonGoals": [
-    "Changing any other copy (headline/body text) in the accepted/question/declined views.",
-    "Changing animations, timing, layout, or styling beyond the text content of the five selected spans.",
-    "Any backend changes."
+    "Do not change any existing accepted-view copy/text content.",
+    "Do not regenerate or modify the existing bouquet image asset file."
   ],
   "imageRequirements": {
     "required": [],

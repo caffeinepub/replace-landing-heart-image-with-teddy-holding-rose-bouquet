@@ -1,24 +1,39 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-06T13:00:41.411Z",
+  "generatedAt": "2026-02-06T17:04:23.692Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 1,
-    "implemented": 1,
+    "total": 2,
+    "implemented": 2,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Update only the 5 selected <span> elements in the accepted view (the five bouncing emoji spans) so that each span’s text content becomes exactly: \"❤ 🥰 😏 💋💌\", while keeping all existing classes (including animate-bounce and delay classes), layout, and behavior unchanged.",
+        "summary": "On the accepted (Yes) view, animate the 2D rose bouquet image so it fades in over 1 second when the view is shown (do not change the fade-in timing for other sections like the question/declined views).",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/App.tsx"
+          "frontend/src/App.tsx",
+          "frontend/src/index.css"
         ],
         "matchedFiles": [
-          "frontend/src/App.tsx"
+          "frontend/src/App.tsx",
+          "frontend/src/index.css"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Add a subtle background glow behind the 2D rose bouquet image on the accepted (Yes) view, and make the glow gently pulse continuously without affecting layout or overlapping text.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/index.css"
+        ],
+        "matchedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/index.css"
         ]
       }
     ]
@@ -29,6 +44,7 @@
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
     "frontend/src/App.tsx",
+    "frontend/src/index.css",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

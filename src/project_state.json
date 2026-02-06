@@ -1,22 +1,46 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "New project",
-  "architectural_notes": [],
+  "summary": "Project includes a Yes page featuring a 2D rose bouquet image; next update will add a 1s fade-in for the bouquet and a subtle gently pulsing background glow behind it.",
+  "architectural_notes": [
+    "Animation specs: bouquet fades in over 1s on Yes page load; background glow should be subtle and gently pulsing."
+  ],
   "known_issues": [],
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-update-only-the-5-selected-span-elements-in-the-accepted-view-the-five-bouncing-emoji-spans-so-that-each-span-s-text-content-becomes-exactly-while-keeping-all-existing-classes-including-animate-bounce-and-delay-classes-layout-and-behavior-unchanged",
-      "title": "Update only the 5 selected <span> elements in the accepted view (the five bouncing emoji spans) so that each span’s text content becomes exactly: \"❤ 🥰 😏 💋💌\", while keeping all existing classes (including animate-bounce and delay classes), layout, and behavior unchanged.",
+      "id": "feature-on-the-accepted-yes-view-animate-the-2d-rose-bouquet-image-so-it-fades-in-over-1-second-when-the-view-is-shown-do-not-change-the-fade-in-timing-for-other-sections-like-the-question-declined-views",
+      "title": "On the accepted (Yes) view, animate the 2D rose bouquet image so it fades in over 1 second when the view is shown (do not change the fade-in timing for other sections like the question/declined views).",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-add-a-subtle-background-glow-behind-the-2d-rose-bouquet-image-on-the-accepted-yes-view-and-make-the-glow-gently-pulse-continuously-without-affecting-layout-or-overlapping-text",
+      "title": "Add a subtle background glow behind the 2D rose bouquet image on the accepted (Yes) view, and make the glow gently pulse continuously without affecting layout or overlapping text.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
     }
   ],
-  "new_feature_requests": [],
-  "projectName": "Replace accepted-view emoji spans with a repeated emoji sequence",
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Add 1-second fade-in animation for the bouquet when the Yes page loads",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Add subtle background glow behind the 2D rose bouquet with a gentle pulsing effect",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Add 1s bouquet fade-in and subtle pulsing glow on the Yes (accepted) page",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

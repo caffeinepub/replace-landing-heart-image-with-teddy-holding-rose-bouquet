@@ -2,10 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-only-the-5-selected-span-elements-in-the-accepted-view-the-five-bouncing-emoji-spans-so-that-each-span-s-text-content-becomes-exactly-while-keeping-all-existing-classes-including-animate-bounce-and-delay-classes-layout-and-behavior-unchanged",
-      "featureTitle": "Update only the 5 selected <span> elements in the accepted view (the five bouncing emoji spans) so that each span’s text content becomes exactly: \"❤ 🥰 😏 💋💌\", while keeping all existing classes (including animate-bounce and delay classes), layout, and behavior unchanged.",
+      "featureId": "feature-on-the-accepted-yes-view-animate-the-2d-rose-bouquet-image-so-it-fades-in-over-1-second-when-the-view-is-shown-do-not-change-the-fade-in-timing-for-other-sections-like-the-question-declined-views",
+      "featureTitle": "On the accepted (Yes) view, animate the 2D rose bouquet image so it fades in over 1 second when the view is shown (do not change the fade-in timing for other sections like the question/declined views).",
       "files": [
-        "frontend/src/App.tsx"
+        "frontend/src/App.tsx",
+        "frontend/src/index.css"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -16,6 +17,25 @@
       ],
       "testIds": [
         "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-subtle-background-glow-behind-the-2d-rose-bouquet-image-on-the-accepted-yes-view-and-make-the-glow-gently-pulse-continuously-without-affecting-layout-or-overlapping-text",
+      "featureTitle": "Add a subtle background glow behind the 2D rose bouquet image on the accepted (Yes) view, and make the glow gently pulse continuously without affecting layout or overlapping text.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
       ],
       "confidence": "high"
     }
