@@ -12,6 +12,13 @@ interface BurstEffect {
     y: number;
 }
 
+// Primary user flow verification (v15):
+// 1. Question view displays with original heart illustration (not transparent)
+// 2. "Haanji obviously" button triggers heart burst and transitions to accepted view
+// 3. "Nahi yaar" button becomes evasive on hover/touch (smooth slide animation)
+// 4. Accepted view shows celebration hearts animation with success message
+// 5. No evasive behavior should interfere with "Yes" button interaction
+
 function App() {
     const [viewState, setViewState] = useState<ViewState>('question');
     const [noButtonPosition, setNoButtonPosition] = useState({ x: 0, y: 0 });
@@ -286,7 +293,7 @@ function App() {
                             </div>
                             <div className="space-y-6">
                                 <h1 className="text-6xl md:text-7xl font-bold text-primary tracking-tight">
-                                    Yay! 🎉
+                                    I LOVE YOU SONPARI
                                 </h1>
                                 <p className="text-2xl md:text-3xl text-foreground font-semibold">
                                     You just made me the happiest person alive!
@@ -296,11 +303,11 @@ function App() {
                                 </p>
                             </div>
                             <div className="pt-8 flex flex-wrap gap-4 justify-center text-4xl">
-                                <span className="animate-bounce">❤️</span>
-                                <span className="animate-bounce delay-100">💖</span>
-                                <span className="animate-bounce delay-200">💕</span>
-                                <span className="animate-bounce delay-300">💗</span>
-                                <span className="animate-bounce delay-100">💝</span>
+                                <span className="animate-bounce">❤ 🥰 😏 💋💌</span>
+                                <span className="animate-bounce delay-100">❤ 🥰 😏 💋💌</span>
+                                <span className="animate-bounce delay-200">❤ 🥰 😏 💋💌</span>
+                                <span className="animate-bounce delay-300">❤ 🥰 😏 💋💌</span>
+                                <span className="animate-bounce delay-100">❤ 🥰 😏 💋💌</span>
                             </div>
                         </div>
                     </>

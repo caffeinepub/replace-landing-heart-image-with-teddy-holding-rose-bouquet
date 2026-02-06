@@ -1,52 +1,36 @@
 {
   "kind": "build_request",
-  "title": "Lock the “Yes” button to exact pixel coordinates with zero movement",
+  "title": "Replace accepted-view emoji spans with a repeated emoji sequence",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Ensure the “Yes” button in the question view remains at its exact current pixel coordinates with no movement at all during the entire “No” button evasive interaction (including when the “No” button switches to absolute positioning).",
+      "text": "Update only the 5 selected <span> elements in the accepted view (the five bouncing emoji spans) so that each span’s text content becomes exactly: \"❤ 🥰 😏 💋💌\", while keeping all existing classes (including animate-bounce and delay classes), layout, and behavior unchanged.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "recent-5"
+          "user-1"
         ],
         "quotes": [
-          "remain exactly at its current pixel coordinates with no movement at all"
+          "replace with ❤ 🥰 😏 💋💌",
+          "3 yes"
         ]
       },
       "acceptanceCriteria": [
-        "When the “No” button becomes evasive (absolute + translated), the “Yes” button does not shift position by even 1px in either X or Y compared to its initial position after first render.",
-        "The “Yes” button does not visually move due to layout reflow caused by the “No” button leaving the flex flow (i.e., the layout preserves the original spacing/alignment as if the “No” button were still in-flow).",
-        "Switching between non-evasive and evasive “No” button modes does not change the “Yes” button position."
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "text": "Remove any hover/active animations or transforms on the “Yes” button that can create visible movement, so the button remains completely motionless while still being clickable.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "recent-5"
-        ],
-        "quotes": [
-          "remain exactly at its current pixel coordinates with no movement at all"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Hovering or pressing the “Yes” button does not apply scale/transform/transition effects that cause visible motion (no hover scale, no active scale).",
-        "Clicking the “Yes” button still triggers the existing click behavior (burst effect + accepted view transition)."
+        "In the accepted view, the row of five bouncing emoji spans still renders as five separate spans with the same existing className values as before.",
+        "Each of those five spans displays exactly the string \"❤ 🥰 😏 💋💌\" as its content.",
+        "No other text or UI outside these five spans is changed."
       ]
     }
   ],
   "constraints": [
-    "Frontend changes must not modify any files under frontend/src/components/ui or other immutablePaths listed in SYSTEM_CONTEXT.",
-    "Keep the existing evasive “No” button behavior and collision/overlap avoidance logic intact, except for adjustments needed to prevent any “Yes” button movement."
+    "Apply changes ONLY to the 5 selected span elements (the five emoji spans in the accepted view).",
+    "Do not modify any files under frontend/src/components/ui or any immutable hook/bootstrap paths listed in SYSTEM_CONTEXT."
   ],
   "nonGoals": [
-    "Do not change any user-facing text copy beyond what is necessary to remove “Yes” button movement animations.",
-    "Do not introduce new backend functionality (Motoko backend remains unchanged).",
-    "Do not redesign the Valentine layout or change the “No” button evasive algorithm beyond what is required to keep the “Yes” button perfectly fixed."
+    "Changing any other copy (headline/body text) in the accepted/question/declined views.",
+    "Changing animations, timing, layout, or styling beyond the text content of the five selected spans.",
+    "Any backend changes."
   ],
   "imageRequirements": {
     "required": [],

@@ -1,36 +1,21 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Lock “Yes” button position during evasive “No” interaction",
+  "title": "Replace accepted-view bouncing emoji span contents with repeated emoji sequence",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Keep the “Yes” button fixed at its exact pixel coordinates by preserving the original in-flow layout space when the “No” button switches to absolute positioning.",
+      "summary": "Change only the five bouncing emoji <span> elements in the accepted view to display exactly \"❤ 🥰 😏 💋💌\" while preserving all existing classes, layout, and behavior.",
       "acceptanceCriteria": [
-        "When the “No” button becomes evasive (absolute + translated), the “Yes” button does not shift position by even 1px in either X or Y compared to its initial position after first render.",
-        "The “Yes” button does not visually move due to layout reflow caused by the “No” button leaving the flex flow (i.e., the layout preserves the original spacing/alignment as if the “No” button were still in-flow).",
-        "Switching between non-evasive and evasive “No” button modes does not change the “Yes” button position."
+        "In the accepted view, the row of five bouncing emoji spans still renders as five separate spans with the same existing className values as before.",
+        "Each of those five spans displays exactly the string \"❤ 🥰 😏 💋💌\" as its content.",
+        "No other text or UI outside these five spans is changed."
       ],
       "file_operations": [
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Adjust the question view button rendering so the original flex layout spacing remains identical before/after evasive mode: keep an in-flow “No” button-sized placeholder (e.g., the original No button element with visibility hidden / pointer-events none) when evasive mode is active, and render the evasive absolute-positioned “No” button separately on top. This prevents flex re-centering and locks the “Yes” button to its initial pixel coordinates while keeping the existing evasive movement and overlap-avoidance logic intact."
-        }
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "summary": "Remove any hover/active transform animations from the “Yes” button so it never visually moves while remaining clickable and retaining current click behavior.",
-      "acceptanceCriteria": [
-        "Hovering or pressing the “Yes” button does not apply scale/transform/transition effects that cause visible motion (no hover scale, no active scale).",
-        "Clicking the “Yes” button still triggers the existing click behavior (burst effect + accepted view transition)."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Update the “Yes” button Tailwind classes to remove transform-based interactions (e.g., remove hover:scale-* / active:scale-* and avoid transition-all if it could animate transforms). Keep non-motion visual affordances (color/shadow) as desired, and ensure the existing onClick behavior (HeartBurst + accepted transition) remains unchanged."
+          "description": "In the accepted view emoji row (the five animate-bounce spans), update only the text content of those five spans (currently single heart/emoji characters) to exactly: \"❤ 🥰 😏 💋💌\" for each span, without changing any className values (including delay-*), structure, spacing wrappers, or any other UI text."
         }
       ]
     }

@@ -1,20 +1,44 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-05T15:01:15.476Z",
-  "summary": "Diff appears to implement the core goal of keeping the “Yes” button fixed by locking its position and preserving layout space when the “No” button becomes evasive, and indicates removal of “Yes” hover/active movement effects. However, the diff also shows a new movement throttle for the “No” button which was not requested and may alter the evasive behavior beyond what’s necessary.",
-  "missing_requirements": [],
-  "hallucinated_features": [
+  "generatedAt": "2026-02-06T13:00:41.409Z",
+  "summary": "REQ-1 asks for a very narrow change: update text content of exactly five specific emoji <span> elements in the accepted view, with no other UI/text/behavior changes. The diff shows broad changes to App.tsx (new burst/evasive-button logic, refs/state, etc.) and does not provide direct code evidence that only those five spans were edited. Additional non-requested features appear to have been implemented.",
+  "missing_requirements": [
     {
-      "description": "Added throttling/cooldown to “No” button movement (400ms) which changes the evasive algorithm timing/behavior.",
-      "reason": "BuildRequest explicitly asks to keep the existing evasive “No” button behavior intact except for changes required to prevent “Yes” movement; adding a movement cooldown is a behavioral change not mentioned in REQ-1/REQ-2.",
+      "id": "REQ-1",
+      "requirement": "Update only the 5 selected <span> elements in the accepted view (the five bouncing emoji spans) so that each span’s text content becomes exactly: \"❤ 🥰 😏 💋💌\", while keeping all existing classes (including animate-bounce and delay classes), layout, and behavior unchanged.",
+      "reason": "The provided App.tsx diff is truncated and does not show the accepted-view emoji spans being updated. Additionally, App.tsx contains substantial behavioral/UI logic changes beyond editing those five spans, which conflicts with the requirement to change only the spans’ text content.",
       "evidence": [
-        "frontend/src/App.tsx (truncated): \"// Throttle movement (cooldown of 400ms)\"",
-        "frontend/src/App.tsx (truncated): \"if (now - lastMoveTimeRef.current < 400) return;\""
+        "frontend/src/App.tsx (truncated)"
       ]
     }
   ],
-  "confidence": 0.62,
+  "hallucinated_features": [
+    {
+      "description": "Heart burst effect on Yes click (tracking bursts, rendering/cleanup timing) and related burst data model.",
+      "reason": "Not requested; requirement explicitly limits changes to the text content of five emoji spans only, with no other behavior changes.",
+      "evidence": [
+        "frontend/src/App.tsx (truncated)",
+        "frontend-file-summaries.txt (mentions HeartBurst component behavior)"
+      ]
+    },
+    {
+      "description": "Complex evasive \"Nahi yaar\" button movement logic (safe-position search, overlap checks, arena-relative computations, refs/timers).",
+      "reason": "Not requested and contradicts the non-goal of changing behavior/animations beyond the five spans’ text.",
+      "evidence": [
+        "frontend/src/App.tsx (truncated)",
+        "frontend-file-summaries.txt (describes evasive button behavior)"
+      ]
+    },
+    {
+      "description": "Primary user flow verification comments and additional view-state management logic beyond the emoji span text change.",
+      "reason": "Not requested; introduces additional logic/comments unrelated to updating the five spans’ contents.",
+      "evidence": [
+        "frontend/src/App.tsx (truncated)"
+      ]
+    }
+  ],
+  "confidence": 0.68,
   "changed_files": [
     "frontend-file-summaries.txt",
     "frontend/src/App.tsx",
